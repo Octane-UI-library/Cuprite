@@ -20,4 +20,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 Have questions or feedback? Write to us at email - illeasmakouz@gmail.com.
 
 ---
-Made with ❤️ by the Octane team.
+Made with ❤️ by the Cuprite team.
