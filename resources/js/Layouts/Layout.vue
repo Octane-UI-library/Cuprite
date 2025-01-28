@@ -1,8 +1,11 @@
 
 <template>
+    <div class="absolute left-[30%] -top-48  w-[600px] h-[300px] bg-red-600/50 blur-[2000px] -z-10"></div>
+    <div class="absolute left-[20%] -top-60  w-[500px] h-[400px] bg-purple-600/50 blur-[2000px] -z-10"></div>
+    <div class="absolute left-[90%] -top-60  w-[500px] h-[400px] bg-blue-600/50 blur-[1000px] -z-10"></div>
     <div v-auto-animate class="overflow-y-hidden min-h-screen">
         <!-- Header -->
-        <header class="border-b border-zinc-200" auth="" cart_count="" products="">
+        <header class="h-20">
             <Header />
         </header>
 
@@ -14,7 +17,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="border-t border-zinc-200 h-auto">
+        <footer class="h-auto">
             <Footer />
         </footer>
     </div>
