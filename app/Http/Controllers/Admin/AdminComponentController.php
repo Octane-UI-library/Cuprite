@@ -62,4 +62,20 @@ class AdminComponentController extends Controller
     {
         //
     }
+
+    /**
+     * Publish the specified resource.
+     */
+    public function publish(string $id)
+    {
+        //
+    }
+
+    /**
+     * Archive the specified resource.
+     */
+    public function archive(string $id)
+    {
+        //
+    }
 }

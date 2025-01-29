@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\AdminComponentController;
+use App\Http\Controllers\Admin\AdminExampleController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ExampleController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\AdminComponentController;
-use App\Http\Controllers\Admin\AdminExampleController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
