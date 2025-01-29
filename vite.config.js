@@ -19,7 +19,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': '/resources/js',
+            '@': '/resources/',
         },
     },
     server: {
@@ -27,4 +27,3 @@ export default defineConfig({
         port: 3000,
     },
 })
-
