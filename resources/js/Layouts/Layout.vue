@@ -1,16 +1,13 @@
 
 <template>
-    <div class="absolute left-[30%] -top-48  w-[600px] h-[300px] bg-red-600/50 blur-[2000px] -z-10"></div>
-    <div class="absolute left-[20%] -top-60  w-[500px] h-[400px] bg-purple-600/50 blur-[2000px] -z-10"></div>
-    <div class="absolute left-[90%] -top-60  w-[500px] h-[400px] bg-blue-600/50 blur-[1000px] -z-10"></div>
     <div v-auto-animate class="overflow-y-hidden min-h-screen">
         <!-- Header -->
-        <header class="h-20">
+        <header class="fixed z-50 shadow-lg w-full  h-20">
             <Header />
         </header>
 
         <!-- Main Content -->
-        <main class="h-auto max-w-screen">
+        <main class="h-auto pt-40 max-w-screen">
             <Container>
                 <slot />
             </Container>
@@ -36,3 +33,4 @@ export default {
     },
 }
 </script>
+
