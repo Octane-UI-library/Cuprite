@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gradient-to-br from-zinc-50 to-gray-100 dark:from-[#0a0a0a] dark:to-[#1a1a1a] transition-all duration-500">
+    <div class="min-h-screen bg-gradient-to-br from-red-50 to-rose-100 dark:from-[#0a0a0a] rounded-2xl dark:to-[#1a1a1a] transition-all duration-500">
         <!-- Hero Section -->
         <div class="py-24 md:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,17 +11,17 @@
                         </span>
                     </h1>
 
-                    <div class="flex justify-center gap-4">
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
                             href="/docs"
-                            class="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+                            class="px-8 py-4 shadow-xl bg-red-600 hover:bg-gray-100 dark:hover:bg-[#1f1f21] hover:text-rose-600 text-white font-semibold rounded-xl transition-all duration-300 ease-in-out hover:shadow-xl"
                         >
                             Get Started →
                         </Link>
                         <a
                             href="https://github.com/Octane-UI-library/Cuprite"
                             target="_blank"
-                            class="px-8 py-4 border-2 border-red-100 dark:border-red-900/50 text-red-600 dark:text-red-400 font-semibold rounded-xl transition-all duration-300 hover:bg-red-50/50 dark:hover:bg-red-900/20"
+                            class="px-8 py-4 border-2 shadow-xl border-red-200 dark:border-red-900/50 text-red-600 dark:text-red-400 font-semibold rounded-xl transition-all duration-300 hover:bg-rose-100 dark:hover:bg-red-900/20"
                         >
                             <i class="ri-github-fill mr-2"></i>
                             GitHub Stars
@@ -59,7 +59,7 @@
         <div class="py-20 bg-gradient-to-b from-white/50 to-transparent dark:from-[#161616]/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">
-                    <span class="bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                    <span class="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">
                         Featured Components
                     </span>
                 </h2>
@@ -76,7 +76,7 @@
                                 <button class="px-6 py-3 border-2 border-red-200 dark:border-red-900/50 text-red-600 dark:text-red-400 rounded-xl hover:bg-red-50/50 dark:hover:bg-red-900/20 transition-all duration-300">
                                     Secondary
                                 </button>
-                                <button class="px-6 py-3 bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                                <button class="px-6 py-3 bg-gradient-to-r from-red-600 to-rose-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
                                     Gradient
                                 </button>
                             </div>
@@ -105,7 +105,7 @@
                         </div>
                     </div>
 
-                    <!-- Add more component showcases -->
+                    <!-- Больше компонентов -->
                 </div>
             </div>
         </div>
