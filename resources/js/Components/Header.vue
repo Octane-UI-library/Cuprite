@@ -14,7 +14,7 @@
                             class="w-8 h-8 transition-transform duration-300 group-hover:scale-110"
                         />
                     </div>
-                    <span class="text-2xl font-black bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                    <span class="text-2xl font-black bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">
                         Cuprite
                     </span>
                 </Link>
@@ -30,7 +30,7 @@
                     </Link>
 
                     <Link
-                        href="/templates"
+                        :href="route('about')"
                         class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-all duration-300 font-semibold flex items-center gap-2"
                     >
                         <i class="ri-layout-line text-lg"></i>
@@ -72,7 +72,7 @@
                         </div>
 
                         <Link
-                            href="/components"
+                            :href="route('components')"
                             class="flex items-center p-3 space-x-3 rounded-xl group hover:bg-gray-100/50 dark:hover:bg-[#1f1f22] transition-all duration-300"
                         >
                             <div class="p-2 bg-red-100/50 dark:bg-red-900/20 rounded-lg">
@@ -83,7 +83,7 @@
                         </Link>
 
                         <Link
-                            href="/templates"
+                            :href="route('about')"
                             class="flex items-center p-3 space-x-3 rounded-xl group hover:bg-gray-100/50 dark:hover:bg-[#1f1f22] transition-all duration-300"
                         >
                             <div class="p-2 bg-blue-100/50 dark:bg-blue-900/20 rounded-lg">
@@ -111,6 +111,9 @@ import ThemeToggle from "./Layouts/ThemeToggle.vue";
 import { Link } from '@inertiajs/vue3'
 
 export default {
+    methods: {
+
+    },
     directives: {
         clickOutside
     },
