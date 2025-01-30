@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body{
-    @apply dark:bg-[#101010] dark:text-white
+        @apply dark:bg-[#101010] dark:text-white;
+}
+
+*{
+    @apply duration-300 ease-in-out;
 }

@@ -4,7 +4,7 @@
         <div class="py-24 md:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center space-y-8">
-                    <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                    <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">
                         Cuprite UI
                         <span class="block text-3xl md:text-4xl font-normal mt-4 text-gray-700 dark:text-gray-300">
                             Modern Components for Developers
@@ -18,7 +18,7 @@
                         >
                             Get Started →
                         </Link>
-                        <Link
+                        <a
                             href="https://github.com/Octane-UI-library/Cuprite"
                             target="_blank"
                             class="px-8 py-4 border-2 border-red-100 dark:border-red-900/50 text-red-600 dark:text-red-400 font-semibold rounded-xl transition-all duration-300 hover:bg-red-50/50 dark:hover:bg-red-900/20"
@@ -28,7 +28,7 @@
                             <span class="ml-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 px-3 py-1 rounded-full">
                                 2.4K
                             </span>
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                     <div class="p-8 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10] hover:shadow-2xl transition-all duration-300">
                         <div class="relative overflow-hidden rounded-xl mb-6">
                             <img
-                                src="https://source.unsplash.com/random/800x600"
+                                src="https://cdn.britannica.com/70/234870-050-D4D024BB/Orange-colored-cat-yawns-displaying-teeth.jpg"
                                 alt="Component preview"
                                 class="w-full h-64 object-cover transform hover:scale-105 transition-all duration-500"
                             >
