@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminComponentController;
 use App\Http\Controllers\Admin\AdminExampleController;
+use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ComponentController;
@@ -56,37 +58,56 @@ Route::group(['prefix' => 'categories'], function () {
 
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::middleware([AdminMiddleware::class])
+    ->prefix('admin')
+    ->as('admin.')
+    ->group(function () {
 
-    // URL: /admin/dashboard | Имя маршрута: admin.dashboard
-    Route::get('dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
+        // URL: /admin/dashboard | Имя маршрута: admin.dashboard
+        Route::get('dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
 
-    // URL: /admin/components | Имя маршрута: admin.components.index
-    Route::resource('components', AdminComponentController::class)
-        ->except(['show']);
+        // URL: /admin/categories | Имя маршрута: admin.categories.index
+        Route::resource('categories', AdminCategoryController::class)
+            ->except(['show']);
 
-    // URL: /admin/components/{component}/publish | Имя маршрута: admin.components.publish
-    Route::post('components/{component}/publish', [AdminComponentController::class, 'publish'])
-        ->name('components.publish');
+        Route::get('/categories/{category}', [AdminCategoryController::class, 'show'])
+            ->name('categories.show');
 
-    // URL: /admin/components/{component}/archive | Имя маршрута: admin.components.archive
-    Route::post('components/{component}/archive', [AdminComponentController::class, 'archive'])
-        ->name('components.archive');
+        // URL: /admin/components | Имя маршрута: admin.components.index
+        Route::resource('components', AdminComponentController::class)
+            ->except(['show']);
 
-    // URL: /admin/examples | Имя маршрута: admin.examples.index
-    Route::resource('examples', AdminExampleController::class)
-        ->except(['show']);
+        Route::get('/component/{component}', [AdminComponentController::class, 'show'])
+            ->name('component.show');
 
-    // URL: /admin/examples/{example}/publish | Имя маршрута: admin.examples.publish
-    Route::post('examples/{example}/publish', [AdminExampleController::class, 'publish'])
-        ->name('examples.publish');
+        // URL: /admin/components/{component}/publish | Имя маршрута: admin.components.publish
+        Route::post('components/{component}/publish', [AdminComponentController::class, 'publish'])
+            ->name('components.publish');
 
-    // URL: /admin/examples/{example}/archive | Имя маршрута: admin.examples.archive
-    Route::post('examples/{example}/archive', [AdminExampleController::class, 'archive'])
-        ->name('examples.archive');
+        // URL: /admin/components/{component}/archive | Имя маршрута: admin.components.archive
+        Route::post('components/{component}/archive', [AdminComponentController::class, 'archive'])
+            ->name('components.archive');
 
-})->middleware(AdminMiddleware::class);
+        // URL: /admin/examples | Имя маршрута: admin.examples.index
+        Route::resource('examples', AdminExampleController::class)
+            ->except(['show']);
+
+        // URL: /admin/examples/{example}/publish | Имя маршрута: admin.examples.publish
+        Route::post('examples/{example}/publish', [AdminExampleController::class, 'publish'])
+            ->name('examples.publish');
+
+        // URL: /admin/examples/{example}/archive | Имя маршрута: admin.examples.archive
+        Route::post('examples/{example}/archive', [AdminExampleController::class, 'archive'])
+            ->name('examples.archive');
+    });
+
+Route::get('/admin/login', [LoginController::class, 'index'])->name('admin.login');
+Route::post('/admin/login', [LoginController::class, 'store'])->name('admin.login');
+
+Route::post('/admin/logout', [LoginController::class, 'destroy'])->name('admin.logout');
+
+Route::get('/admin/create-user', [LoginController::class, 'createTestAdmin']);
 
 Route::fallback(function () {
     return response()->view('errors.404', [], 404);
