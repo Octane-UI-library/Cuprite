@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,10 +10,10 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (User::isAdmin()) {
+        if (auth()->check() && auth()->user()->role === "admin") {
             return $next($request);
         }
 
-        return response()->abort(403);
+        abort('403', 'Access denied');
     }
 }

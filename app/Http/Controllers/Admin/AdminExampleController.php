@@ -3,79 +3,92 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Example;
 use Illuminate\Http\Request;
 
 class AdminExampleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $examples = Example::all();
+
+        return view('admin.elements.examples.examples', [
+            'examples' => $examples,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.elements.examples.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'content' => 'required|string',
+            'slug' => 'required|string',
+        ]);
+
+        Example::create($request->all());
+
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $example = Example::findOrFail($id);
+
+        return view('admin.elements.examples.show', [
+            'example' => $example,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $example = Example::findOrFail($id);
+
+        return view('admin.elements.examples.edit', [
+            'example' => $example,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'content' => 'required|string',
+            'slug' => 'required|string',
+        ]);
+
+        $example = Example::findOrFail($id);
+        $example->update($request->all());
+
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        Example::destroy($id);
+
+        return redirect()->back();
     }
 
-    /**
-     * Publish the specified resource.
-     */
-    public function publish(string $id)
-    {
-        //
-    }
-
-    /**
-     * Archive the specified resource.
-     */
-    public function archive(string $id)
-    {
-        //
-    }
+//    /**
+//     * Publish the specified resource.
+//     */
+//    public function publish(string $id)
+//    {
+//        //
+//    }
+//
+//    /**
+//     * Archive the specified resource.
+//     */
+//    public function archive(string $id)
+//    {
+//        //
+//    }
 }
