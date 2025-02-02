@@ -18,6 +18,11 @@
             name="csrf-token"
             content="{{ csrf_token() }}"
         >
+        <link
+            type="image/x-icon"
+            href="/favicon.ico"
+            rel="icon"
+        >
 
         @vite([
         'resources/css/app.css',
@@ -34,7 +39,7 @@
         />
 
         <title>
-            UI Library
+            Cuprite
         </title>
 
         @inertiaHead
