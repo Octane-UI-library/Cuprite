@@ -13,7 +13,7 @@
 
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
-                            href="/docs"
+                            :href="route('components')"
                             class="px-8 py-4 shadow-xl bg-red-600 hover:bg-gray-100 dark:hover:bg-[#1f1f21] hover:text-rose-600 text-white font-semibold rounded-xl transition-all duration-300 ease-in-out hover:shadow-xl"
                         >
                             Get Started →

@@ -32,7 +32,7 @@
                     <!-- Заголовок карточки -->
                     <div class="flex items-start justify-between mb-6">
                         <div class="w-14 h-14 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
-                            <i :class="category.icon" class="text-3xl text-red-600 dark:text-red-400"></i>
+                            <i :class="category.icon.class" class="text-3xl text-red-600 dark:text-red-400"></i>
                         </div>
                         <span class="px-3 py-1 bg-red-100/50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full text-sm">
                     {{ category.name }}
@@ -57,7 +57,7 @@
                     <!-- Ссылка на категорию -->
                     <div class="flex items-center justify-between">
                         <Link
-                            :href="`/components/${category.slug}`"
+                            :href="route('components.category', category.slug)"
                             class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-500 transition-colors flex items-center"
                         >
                             View All Components ({{ category.components.length }})
@@ -85,19 +85,17 @@ const props = defineProps({
 
 const searchQuery = ref('');
 
-// Обрабатываем категории и их компоненты
 const allCategories = computed(() => {
     return props.categories.map(category => ({
         ...category,
         icon: category.icon || "ri-file-code-line",
         components: (category.components || []).map(component => ({
             ...component,
-            dynamicComponent: component.code
+            dynamicComponent: component.code_html
         }))
     }));
 });
 
-// Фильтрация категорий
 const filteredCategories = computed(() => {
     if (!searchQuery.value) return allCategories.value;
 

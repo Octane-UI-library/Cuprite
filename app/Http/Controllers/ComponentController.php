@@ -12,8 +12,9 @@ class ComponentController extends Controller
     {
         $categories = Category::with(['components' => function ($query) {
             $query->take(4);
-        }])->get();
-        return Inertia::render('Components', [
+        }])->with('icon')->get();
+
+        return Inertia::render('Components/Components', [
             'categories' => $categories,
         ]);
     }

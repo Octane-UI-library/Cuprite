@@ -70,6 +70,21 @@
                     </a>
                 </li>
 
+                <!-- Icons Menu Item -->
+                <li class="px-3">
+                    <a
+                        href="{{ route('admin.icons.index') }}"
+                        class="flex items-center gap-3 p-3 transition-all duration-300 rounded-xl text-slate-700 dark:text-gray-300 hover:text-rose-600 dark:hover:text-red-400 hover:bg-rose-50/50 dark:hover:bg-red-900/20 focus:bg-rose-50/50 {{ request()->routeIs('admin.icons.index') ? 'bg-rose-100/50 dark:bg-red-900/20 text-rose-600 dark:text-red-400' : '' }}"
+                    >
+                        <div class="flex items-center self-center">
+                            <i class="ri-remixicon-line text-2xl"></i>
+                        </div>
+                        <div class="flex flex-col items-start justify-center flex-1 w-full gap-0 overflow-hidden text-sm font-medium truncate">
+                            Icons
+                        </div>
+                    </a>
+                </li>
+
                 <!-- Examples Menu Item -->
                 <li class="px-3">
                     <a

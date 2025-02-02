@@ -10,14 +10,23 @@ return new class extends Migration
     {
         Schema::create('components', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('category_id')
                 ->constrained()
                 ->onDelete('cascade');
+
             $table->string('name');
-            $table->string('slug')
-                ->unique();
+
             $table->text('description');
-            $table->text('code');
+
+            $table->text('code_html');
+
+            $table->text('code_vue')
+                ->nullable();
+
+            $table->text('code_react')
+                ->nullable();
+
             $table->timestamps();
         });
     }

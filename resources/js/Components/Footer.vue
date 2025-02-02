@@ -5,7 +5,7 @@
                 <div class="p-6 md:p-0 grid grid-cols-1 md:grid-cols-4 gap-12">
                     <!-- Brand Column -->
                     <div class="space-y-6">
-                        <Link href="/" class="flex items-center gap-3 group">
+                        <Link :href="route('home')" class="flex items-center gap-3 group">
                             <div class="p-2 bg-red-100/50 dark:bg-red-900/20 rounded-lg transition-all group-hover:bg-red-200/50 dark:group-hover:bg-red-900/30">
                                 <img
                                     :src="logo"
