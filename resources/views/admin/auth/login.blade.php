@@ -6,7 +6,7 @@
 
     <div class="flex items-center justify-center min-h-screen dark:bg-[#101010]">
         <div class="w-full max-w-xs border-gray-300 rounded">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('admin.login') }}" method="POST">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('admin.login.store') }}" method="POST">
                 @csrf
 
                 <div class="mb-4">

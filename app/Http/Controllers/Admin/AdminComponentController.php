@@ -103,17 +103,4 @@ class AdminComponentController extends Controller
 
         return redirect()->back();
     }
-
-//    public function publish(string $id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Archive the specified resource.
-//     */
-//    public function archive(string $id)
-//    {
-//        //
-//    }
 }
