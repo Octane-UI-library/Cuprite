@@ -16,64 +16,65 @@
                 </p>
             </div>
 
+            <div class="flex items-center justify-center dark:bg-[#101010]">
+                <div class="w-full">
+                    <form class="px-8 pt-6 pb-8 mb-4" action="{{ route('admin.login.store') }}" method="POST">
+                        @csrf
 
-    <div class="flex items-center justify-center min-h-screen dark:bg-[#101010]">
-        <div class="w-full max-w-xs border-gray-300 rounded">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('admin.login.store') }}" method="POST">
-                @csrf
+                        <div class="space-y-4">
+                            <!-- Email Input -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Email
+                                </label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    value="{{ old('email') }}"
+                                    class="w-full px-4 py-3 bg-gray-50/50 dark:bg-[#19191a] border-2 border-red-200/50 dark:border-red-900/30 rounded-xl focus:outline-none focus:border-red-500 transition-all duration-300"
+                                    placeholder="Email"
+                                    required
+                                    autofocus
+                                >
+                                @error('email')
+                                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                <div class="space-y-4">
-                    <!-- Email Input -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Email
-                        </label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            value="{{ old('email') }}"
-                            class="w-full px-4 py-3 bg-gray-50/50 dark:bg-[#19191a] border-2 border-red-200/50 dark:border-red-900/30 rounded-xl focus:outline-none focus:border-red-500 transition-all duration-300"
-                            placeholder="Email"
-                            required
-                            autofocus
+                            <!-- Password Input -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Password
+                                </label>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    class="w-full px-4 py-3 bg-gray-50/50 dark:bg-[#19191a] border-2 border-red-200/50 dark:border-red-900/30 rounded-xl focus:outline-none focus:border-red-500 transition-all duration-300"
+                                    placeholder="Password"
+                                    required
+                                >
+                                @error('password')
+                                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button
+                            type="submit"
+                            class="w-full mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300"
                         >
-                        @error('email')
-                            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
+                            Sign In
+                        </button>
 
-                    <!-- Password Input -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Password
-                        </label>
-                        <input
-                            id="password"
-                            name="password"
-                            type="password"
-                            class="w-full px-4 py-3 bg-gray-50/50 dark:bg-[#19191a] border-2 border-red-200/50 dark:border-red-900/30 rounded-xl focus:outline-none focus:border-red-500 transition-all duration-300"
-                            placeholder="Password"
-                            required
-                        >
-                        @error('password')
-                            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
+                        @if(session('error'))
+                            <p class="text-red-500 text-sm mt-4 text-center">{{ session('error') }}</p>
+                        @endif
+                    </form>
                 </div>
-
-                <!-- Submit Button -->
-                <button
-                    type="submit"
-                    class="w-full mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300"
-                >
-                    Sign In
-                </button>
-
-                @if(session('error'))
-                    <p class="text-red-500 text-sm mt-4 text-center">{{ session('error') }}</p>
-                @endif
-            </form>
+            </div>
         </div>
     </div>
 </div>

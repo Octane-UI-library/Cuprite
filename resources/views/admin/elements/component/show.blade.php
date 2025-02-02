@@ -4,10 +4,6 @@
     Show Component
 @endsection
 
-@section('element_txt')
-    Show Component
-@endsection
-
 @section('element_create_link')
     {{ route('admin.components.index') }}
 @endsection
@@ -17,22 +13,24 @@
 @endsection
 
 @section('element_content')
+    <div>
 
-    <div class="border p-6">
-        <label>name</label>
-        <p class="border">{{ $component->name }}</p>
+        <label>Name</label>
+        <p>{{ $component->name }}</p>
 
-        <label>description</label>
-        <p class="border">{{ $component->description }}</p>
+        <label>Description</label>
+        <p>{{ $component->description }}</p>
 
-        <label>slug</label>
-        <p class="border">{{ $component->slug }}</p>
+        <label>HTML Code</label>
+        <pre class="border">{{ $component->code_html }}</pre>
 
-        <label>code</label>
-        <p class="border">{{ $component->code }}</p>
+        <label>Vue Code</label>
+        <pre class="border">{{ $component->code_vue }}</pre>
 
-        <label>category</label>
-        <p class="border">{{ $component->category->name }}</p>
+        <label>React Code</label>
+        <pre class="border">{{ $component->code_react }}</pre>
+
+        <label>Category</label>
+        <p>{{ $component->category->name ?? 'No Category' }}</p>
     </div>
-
 @endsection

@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminComponentController;
 use App\Http\Controllers\Admin\AdminExampleController;
+use App\Http\Controllers\Admin\AdminIconController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ComponentController;
@@ -33,7 +34,7 @@ Route::group(['prefix' => '/'], function () {
     // URL: /components/{category}/ | Имя маршрута: showComponent
 
     Route::get('components/{category}/', [ComponentController::class, 'show'])
-        ->name('showComponent');
+        ->name('components.category');
 
     // URL: /examples/laravel | Имя маршрута: laravel
     Route::get('examples/laravel', [ExampleController::class, 'index'])
@@ -65,7 +66,14 @@ Route::middleware([AdminMiddleware::class])
             ->except(['show']);
 
         Route::get('/component/{component}', [AdminComponentController::class, 'show'])
-            ->name('component.show');
+            ->name('components.show');
+
+        // URL: /admin/components | Имя маршрута: admin.components.index
+        Route::resource('icons', AdminIconController::class)
+            ->except(['show']);
+
+        Route::get('/icons/{icons}', [AdminIconController::class, 'show'])
+            ->name('icons.show');
 
         // URL: /admin/examples | Имя маршрута: admin.examples.index
         Route::resource('examples', AdminExampleController::class)

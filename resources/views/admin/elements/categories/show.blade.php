@@ -1,4 +1,3 @@
-<!-- resources/views/admin/elements/categories/show.blade.php -->
 @extends('admin.elements.elements')
 
 @section('element_title')
@@ -20,17 +19,17 @@
 @section('element_content')
 
     <div class="border p-6">
-        <label>name</label>
+        <label>Name</label>
         <p class="border">{{ $category->name }}</p>
 
-        <label>description</label>
+        <label>Description</label>
         <p class="border">{{ $category->description }}</p>
 
-        <label>slug</label>
+        <label>Slug</label>
         <p class="border">{{ $category->slug }}</p>
 
-        <label>icon</label>
-        <p class="border">{{ $category->icon }}</p>
+        <label>Icon</label>
+        <p class="border">{{ $category->icon?->name ?? 'No Icon' }}</p>
     </div>
 
 @endsection

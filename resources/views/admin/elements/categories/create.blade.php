@@ -20,17 +20,22 @@
 
     <form action="{{ route('admin.categories.store') }}" method="post">
         @csrf
-        <label for="name">name</label>
-        <input class="border" type="text" name="name" id="name">
+        <label for="name">Name</label>
+        <input class="border" type="text" name="name" id="name" required>
 
-        <label for="description">description</label>
-        <input class="border" type="text" name="description" id="description">
+        <label for="description">Description</label>
+        <input class="border" type="text" name="description" id="description" required>
 
-        <label for="description">slug</label>
-        <input class="border" type="text" name="slug" id="slug">
+        <label for="slug">Slug</label>
+        <input class="border" type="text" name="slug" id="slug" required>
 
-        <label for="description">icon</label>
-        <input class="border" type="text" name="icon" id="icon">
+        <label for="icon_id">Icon</label>
+
+        <select class="border" name="icon_id" id="icon_id">
+            @foreach($icons as $icon)
+                <option value="{{ $icon->id }}">{{ $icon->name }}</option>
+            @endforeach
+        </select>
 
         <button type="submit">Create</button>
     </form>

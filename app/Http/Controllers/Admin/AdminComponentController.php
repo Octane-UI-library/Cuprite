@@ -11,47 +11,41 @@ class AdminComponentController extends Controller
 {
     public function index()
     {
-        $components = Component::with('category')->select('id', 'name', 'slug')->get();
+        $components = Component::with('category')->get();
 
-        return view('admin.elements.component.components', [
+        return view('admin.elements.component.index', [
             'components' => $components,
         ]);
     }
 
     public function create()
     {
-        $categories = Category::all()->pluck('name', 'id');
+        $categories = Category::all();
 
-        return view('admin.elements.component.create',[
+        return view('admin.elements.component.create', [
             'categories' => $categories,
         ]);
     }
 
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
             'description' => 'required|string',
-            'code' => 'required',
+            'code_html' => 'nullable|string',
+            'code_vue' => 'nullable|string',
+            'code_react' => 'nullable|string',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
-        $slug = str_replace(' ', '-', strtolower($request->slug));
+        Component::query()->create($request->only([
+            'name', 'description', 'code_html', 'code_vue', 'code_react', 'category_id',
+        ]));
 
-        Component::create([
-            'name' => $request->name,
-            'slug' => $slug,
-            'category_id' => $request->category_id,
-            'description' => $request->description,
-            'code' => $request->code,
-        ]);
-
-        return redirect()->back();
+        return redirect()->route('admin.components.index');
     }
 
-    public function show(string $id)
+    public function show(int $id)
     {
         $component = Component::with('category')->findOrFail($id);
 
@@ -60,11 +54,10 @@ class AdminComponentController extends Controller
         ]);
     }
 
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        $categories = Category::all()->pluck('name', 'id');
-
-        $component = Component::with('category')->findOrFail($id);
+        $component = Component::query()->findOrFail($id);
+        $categories = Category::all();
 
         return view('admin.elements.component.edit', [
             'component' => $component,
@@ -72,35 +65,30 @@ class AdminComponentController extends Controller
         ]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
             'description' => 'required|string',
-            'code' => 'required',
+            'code_html' => 'nullable|string',
+            'code_vue' => 'nullable|string',
+            'code_react' => 'nullable|string',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
-        $slug = str_replace(' ', '-', strtolower($request->slug));
+        $component = Component::query()->findOrFail($id);
 
-        $component = Component::findOrFail($id);
+        $component->update($request->only([
+            'name', 'description', 'code_html', 'code_vue', 'code_react', 'category_id',
+        ]));
 
-        $component->update([
-            'name' => $request->name,
-            'slug' => $slug,
-            'category_id' => $request->category_id,
-            'description' => $request->description,
-            'code' => $request->code,
-        ]);
-
-        return redirect()->back();
+        return redirect()->route('admin.components.index');
     }
 
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
         Component::destroy($id);
 
-        return redirect()->back();
+        return redirect()->route('admin.components.index');
     }
 }
