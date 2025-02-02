@@ -1,19 +1,21 @@
 <aside
     id="nav-menu-1"
     aria-label="Side navigation"
-    class="fixed top-0 bottom-0 left-0 z-40 flex flex-col transition-transform -translate-x-full bg-white/80 dark:bg-[#0a0a0a]/90 border-r w-72 sm:translate-x-0 border-r-slate-200/50 dark:border-r-[#ffffff10] backdrop-blur-lg"
+    class="fixed top-0 bottom-0 left-0 z-40 flex flex-col transition-transform -translate-x-full bg-white/80 dark:bg-[#151515]/90 border-r w-72 sm:translate-x-0 border-r-slate-200/50 dark:border-r-[#ffffff10] backdrop-blur-lg"
 >
     <!-- Logo Section -->
     <a
         aria-label="Cuprite Admin Panel"
-        class="flex items-center gap-3 p-6 text-xl font-medium whitespace-nowrap focus:outline-none bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent"
+        class="flex items-center p-6 flex items-center space-x-3 group"
         href="/"
     >
-        <img
-            src="{{ asset('favicon.ico') }}"
-            alt="logo"
-            class="w-10 h-10 filter dark:brightness-125"
-        >
+        <div class="p-2 bg-red-100/50 dark:bg-red-900/20 rounded-lg transition-all duration-300 group-hover:bg-red-200/50 dark:group-hover:bg-red-900/30">
+            <img
+                src="{{ asset('favicon.ico') }}"
+                alt="Logo"
+                class="w-8 h-8 transition-transform duration-300 group-hover:scale-110"
+            />
+        </div>
         <span class="text-2xl font-black bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">
             Cuprite
         </span>
