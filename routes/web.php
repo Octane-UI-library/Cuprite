@@ -31,6 +31,7 @@ Route::group(['prefix' => '/'], function () {
         ->name('components');
 
     // URL: /components/{category}/ | Имя маршрута: showComponent
+
     Route::get('components/{category}/', [ComponentController::class, 'show'])
         ->name('showComponent');
 
