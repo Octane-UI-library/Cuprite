@@ -23,39 +23,44 @@
             </div>
 
             <!-- Сетка компонентов -->
-            <div v-if="filteredComponents.length" v-auto-animate="{ duration: 300 }" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div v-if="filteredCategories.length" v-auto-animate="{ duration: 300 }" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div
-                    v-for="component in filteredComponents"
-                    :key="component.id"
+                    v-for="category in filteredCategories"
+                    :key="category.id"
                     class="group p-8 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/20 dark:border-[#ffffff10] hover:border-red-100/50 dark:hover:border-red-900/30"
                 >
                     <!-- Заголовок карточки -->
                     <div class="flex items-start justify-between mb-6">
                         <div class="w-14 h-14 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
-                            <i :class="component.category_icon" class="text-3xl text-red-600 dark:text-red-400"></i>
+                            <i :class="category.icon" class="text-3xl text-red-600 dark:text-red-400"></i>
                         </div>
                         <span class="px-3 py-1 bg-red-100/50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full text-sm">
-                            {{ component.category_name }}
-                        </span>
+                    {{ category.name }}
+                </span>
                     </div>
 
-                    <!-- Описание -->
-                    <h3 class="text-2xl font-bold mb-4 dark:text-white">{{ component.category_name }}</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 md:truncate">{{ component.category_description }}</p>
+                    <!-- Описание категории -->
+                    <h3 class="text-2xl font-bold mb-4 dark:text-white">{{ category.name }}</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 md:truncate">{{ category.description }}</p>
 
-                    <!-- Превью -->
-                    <div class="mb-6 p-4 bg-gray-50/50 dark:bg-[#19191a] rounded-xl">
-                        <div v-if="component.dynamicComponent" v-html="component.dynamicComponent" class="space-y-4"></div>
-                        <p v-else class="text-gray-500 dark:text-gray-400">Loading...</p>
+                    <!-- Превью компонентов -->
+                    <div class="mb-6 p-4 bg-gray-50/50 dark:bg-[#19191a] rounded-xl space-y-4">
+                        <div
+                            v-for="component in category.components"
+                            :key="component.id"
+                        >
+                            <div v-if="component.dynamicComponent" v-html="component.dynamicComponent"></div>
+                            <p v-else class="text-gray-500 dark:text-gray-400">Loading...</p>
+                        </div>
                     </div>
 
-                    <!-- Действия -->
+                    <!-- Ссылка на категорию -->
                     <div class="flex items-center justify-between">
                         <Link
-                            :href="`/components/${component.category_slug}`"
+                            :href="`/components/${category.slug}`"
                             class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-500 transition-colors flex items-center"
                         >
-                            View Components
+                            View All Components ({{ category.components.length }})
                             <i class="ri-arrow-right-line ml-2"></i>
                         </Link>
                     </div>
@@ -71,45 +76,42 @@
 </template>
 
 <script setup>
-import {ref, computed, defineAsyncComponent} from 'vue';
+import {ref, computed} from 'vue';
 import {Link} from '@inertiajs/vue3';
 
 const props = defineProps({
-    categories: Object, // Laravel передает коллекции в виде объектов
+    categories: Array,
 });
 
 const searchQuery = ref('');
 
-// Преобразование categories в массив компонентов
-const allComponents = computed(() => {
-    if (!props.categories || typeof props.categories !== 'object') return [];
-
-    return Object.values(props.categories).flatMap(category =>
-        (category.components || []).slice(0, 3).map(component => ({
+// Обрабатываем категории и их компоненты
+const allCategories = computed(() => {
+    return props.categories.map(category => ({
+        ...category,
+        icon: category.icon || "ri-file-code-line",
+        components: (category.components || []).map(component => ({
             ...component,
-            category_name: category.name,
-            category_icon: category.icon || "ri-file-code-line",
-            category_slug: category.slug,
-            category_description: category.description,
-            dynamicComponent: loadComponent(component.code),
+            dynamicComponent: component.code
         }))
-    );
+    }));
 });
 
-// Фильтрация компонентов по поисковому запросу
-const filteredComponents = computed(() => {
-    if (!searchQuery.value) return allComponents.value;
+// Фильтрация категорий
+const filteredCategories = computed(() => {
+    if (!searchQuery.value) return allCategories.value;
 
     const query = searchQuery.value.toLowerCase().trim();
-    return allComponents.value.filter(component =>
-        component.name.toLowerCase().includes(query) ||
-        component.category_name.toLowerCase().includes(query) ||
-        component.description.toLowerCase().includes(query)
-    );
+    return allCategories.value.filter(category => {
+        const matchesCategory = category.name.toLowerCase().includes(query) ||
+            category.description.toLowerCase().includes(query);
+
+        const matchesComponent = category.components.some(component =>
+            component.name.toLowerCase().includes(query) ||
+            component.description.toLowerCase().includes(query)
+        );
+
+        return matchesCategory || matchesComponent;
+    });
 });
-function loadComponent(code) {
-    return code;
-}
-
-
 </script>
