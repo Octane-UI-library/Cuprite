@@ -13,7 +13,7 @@
                                     class="w-8 h-8 transition-transform group-hover:scale-110"
                                 />
                             </div>
-                            <span class="text-2xl font-black bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                            <span class="text-2xl font-black bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">
                                 Cuprite
                             </span>
                         </Link>

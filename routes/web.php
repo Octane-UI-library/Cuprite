@@ -29,7 +29,7 @@ Route::group(['prefix' => '/'], function () {
         ->name('components');
 
     // URL: /components/{category}/{component} | Имя маршрута: showComponent
-    Route::get('components/{category}/{component}', [ComponentController::class, 'show'])
+    Route::get('components/{category}/', [ComponentController::class, 'show'])
         ->name('showComponent');
 
     // URL: /contact | Имя маршрута: contact

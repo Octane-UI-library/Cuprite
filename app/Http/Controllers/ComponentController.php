@@ -12,14 +12,9 @@ class ComponentController extends Controller
     {
         $categories = Category::with(['components' => function ($query) {
             $query->take(4);
-        }])->paginate(3);
-
+        }])->get();
         return Inertia::render('Components', [
             'categories' => $categories,
-            'currentPage' => $categories->currentPage(),
-            'lastPage' => $categories->lastPage(),
-            'total' => $categories->total(),
-            'perPage' => $categories->perPage(),
         ]);
     }
 
