@@ -17,9 +17,13 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+        alias: {
+            '@': '/resources/',
+        },
+    },
     server: {
         host: 'localhost',
         port: 3000,
     },
 })
-
