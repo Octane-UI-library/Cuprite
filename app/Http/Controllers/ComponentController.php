@@ -23,16 +23,14 @@ class ComponentController extends Controller
         ]);
     }
 
-    public function show(Request $request)
+    public function show(Request $request, string $slug)
     {
+        $category = Category::where('slug', $slug)
+            ->with('components')
+            ->firstOrFail();
 
-        $cartegory = 'components';
-
-        $component = 'showComponent';
-
-        return Inertia::render('Component', [
-            'category' => $cartegory,
-            'component' => $component,
+        return Inertia::render('Components/Show', [
+            'category' => $category,
         ]);
     }
 }
