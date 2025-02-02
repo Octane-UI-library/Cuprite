@@ -1,4 +1,4 @@
-# 🚀 Octane  
+# 🚀 Cuprite  
 
 **Octane** is a powerful library of UI components for **Vue**, **React**, and **TailwindCSS**, paired with integration examples for **Laravel**.  
 This repository is designed to accelerate the development of modern web applications with ready-to-use and customizable solutions.  
@@ -20,4 +20,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 Have questions or feedback? Write to us at email - illeasmakouz@gmail.com.
 
 ---
-Made with ❤️ by the Octane team.
+Made with ❤️ by the Cuprite team.
