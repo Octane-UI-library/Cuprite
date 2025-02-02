@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
 
     <meta
         charset="UTF-8"

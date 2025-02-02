@@ -74,11 +74,11 @@ class AdminCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|regex:/^[a-zA-Z0-9-]+$/',
             'icon_id' => 'required|exists:icons,id',
         ]);
 
-        $category = Category::query()->firstOrFail($id);
+        $category = Category::query()->where('id', $id)->firstOrFail();
 
         $category->update([
             'name' => $request->name,
