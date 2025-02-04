@@ -2,13 +2,13 @@
 <html>
 <head>
     <script>
-            const theme = localStorage.getItem('theme');
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        </script>
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 
     <meta
         charset="UTF-8"
@@ -26,7 +26,6 @@
         name="csrf-token"
         content="{{ csrf_token() }}"
     >
-
     <link
         type="image/x-icon"
         href="/favicon.ico"
@@ -48,20 +47,17 @@
     />
 
     <title>
-        @yield('title', 'Cuprite Admin Panel')
+        @yield('title')
     </title>
+
+    @stack('head')
+
 </head>
 <body>
-<div class="flex min-h-screen">
-    <aside class="sm:w-72">
-        @component('admin.components.nav') @endcomponent
-    </aside>
 
-    <main class="flex-1 mt-12 sm:mt-0">
-        @yield('content')
-    </main>
-</div>
+    @yield('content')
 
+
+    @stack('scripts')
 </body>
-
 </html>

@@ -1,14 +1,9 @@
 @extends('layouts.layout')
 
 @section('title')
-    Cuprite
+    @yield('title', 'Cuprite Admin Panel')
 @endsection
 
-@push('head')
-    @inertiaHead
-    @routes
-@endpush
-
 @section('content')
-    @inertia
+    @yield('content')
 @endsection
