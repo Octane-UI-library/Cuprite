@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard',[
+        return view('admin.dashboard.dashboard',[
             'user' => auth()->user(),
             'activeCategories' => Category::query()->count(),
             'activeComponents' => Component::query()->count(),
