@@ -33,7 +33,7 @@
                 <thead class="bg-gray-50/30 dark:bg-[#19191a]">
                     <tr>
                         <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                            <i class="ri-tag-line mr-2 text-red-500"></i>
+                            <i class="ri-file-text-line mr-2 text-red-500"></i>
                             Name
                         </th>
                         <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
