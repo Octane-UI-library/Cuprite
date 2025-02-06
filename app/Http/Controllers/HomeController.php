@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Git\GitAction;
 use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-
-    public function index()
+    public function index(GitAction $action)
     {
         return Inertia::render('Home', [
-           'user' => [
-               'name' => 'John Doe',
-               'age' => 30,
-           ]
+            'stars' => $action->handle(),
         ]);
 
     }
-
 }
