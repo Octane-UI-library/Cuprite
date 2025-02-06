@@ -17,7 +17,7 @@
 @endsection
 
 @section('element_content')
-<div class="bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10] overflow-hidden">
+<div class="bg-white/80 dark:bg-[#212124]/80 h-[89.5%] shadow-xl border border-white/20 dark:border-[#ffffff10] overflow-hidden">
     <div class="px-6 py-4 border-b border-gray-200/50 dark:border-[#ffffff10] bg-gray-50/30 dark:bg-[#19191a]">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">

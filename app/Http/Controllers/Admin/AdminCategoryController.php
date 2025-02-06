@@ -2,13 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Category\CategoryCreateAction;
+use App\Actions\Category\CategoryUpdateAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Categories\CategoryRequest;
 use App\Models\Category;
-use App\Models\Icon;
-use Illuminate\Http\Request;
+use App\Services\CategoryService;
+use App\Services\IconService;
+use Exception;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class AdminCategoryController extends Controller
 {
+    private CategoryService $categoryService;
+
+    private IconService $iconService;
+
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function __construct()
+    {
+        $this->categoryService = app()->get('categoryService');
+        $this->iconService = app()->get('iconService');
+    }
+
     public function index()
     {
         $categories = Category::with('icon')->get();
@@ -20,32 +40,33 @@ class AdminCategoryController extends Controller
 
     public function create()
     {
-        $icons = Icon::all();
+        $icons = $this->iconService->getAllIcons();
 
         return view('admin.elements.categories.create', [
             'icons' => $icons,
         ]);
     }
 
-    public function store(Request $request)
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws Exception
+     */
+    public function store(CategoryRequest $request, CategoryCreateAction $action)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'icon_id' => 'required|exists:icons,id',
-        ]);
+        $request->validated();
 
-        $slug = str_replace(' ', '-', strtolower($request->slug));
+        try {
+            $action->handle($request);
 
-        Category::query()->create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'slug' => $slug,
-            'icon_id' => $request->icon_id,
-        ]);
-
-        return redirect()->route('admin.categories.index');
+            return redirect()->route('admin.categories.index');
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                throw new Exception($e->getMessage(), $e->getCode());
+            } else {
+                abort(500, 'Something went wrong');
+            }
+        }
     }
 
     public function show(string $id)
@@ -59,9 +80,9 @@ class AdminCategoryController extends Controller
 
     public function edit(string $id)
     {
-        $category = Category::query()->where('id', $id)->firstOrFail();
+        $category = $this->categoryService->getCategory($id);
 
-        $icons = Icon::all();
+        $icons = $this->iconService->getAllIcons();
 
         return view('admin.elements.categories.edit', [
             'category' => $category,
@@ -69,30 +90,31 @@ class AdminCategoryController extends Controller
         ]);
     }
 
-    public function update(Request $request, string $id)
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws Exception
+     */
+    public function update(CategoryRequest $request, string $id, CategoryUpdateAction $action)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|regex:/^[a-zA-Z0-9-]+$/',
-            'icon_id' => 'required|exists:icons,id',
-        ]);
+        $request->validated();
 
-        $category = Category::query()->where('id', $id)->firstOrFail();
+        try {
+            $action->handle($request, $id);
 
-        $category->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'slug' => str_replace(' ', '-', strtolower($request->slug)),
-            'icon_id' => $request->icon_id,
-        ]);
-
-        return redirect()->route('admin.categories.index');
+            return redirect()->route('admin.categories.index');
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                throw new Exception($e->getMessage(), $e->getCode());
+            } else {
+                abort(500, 'Something went wrong');
+            }
+        }
     }
 
     public function destroy(string $id)
     {
-        Category::destroy($id);
+        $this->categoryService->deleteCategory($id);
 
         return redirect()->route('admin.categories.index');
     }

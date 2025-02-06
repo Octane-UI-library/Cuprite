@@ -7,13 +7,12 @@ use App\Models\Category;
 use App\Models\Component;
 use App\Models\RequestLog;
 use App\Models\VisitLog;
-use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard.dashboard',[
+        return view('admin.dashboard.dashboard', [
             'user' => auth()->user(),
             'activeCategories' => Category::query()->count(),
             'activeComponents' => Component::query()->count(),

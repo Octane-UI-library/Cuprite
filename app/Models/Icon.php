@@ -9,7 +9,7 @@ class Icon extends Model
 {
     protected $fillable = [
         'name',
-        'class'
+        'class',
     ];
 
     public function categories(): HasMany

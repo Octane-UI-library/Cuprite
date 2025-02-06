@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 
-@section('title', 'Page Not Found')
+@section('app_main_layout_title', 'Page Not Found')
 
-@section('content')
+@section('app_main_layout_content')
     <div
         class="min-h-screen bg-gradient-to-br from-red-50 to-rose-100 dark:from-[#0a0a0a] dark:to-[#1a1a1a] flex items-center justify-center p-4">
         <div class="max-w-2xl w-full text-center relative">

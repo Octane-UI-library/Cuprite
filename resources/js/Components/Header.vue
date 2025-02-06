@@ -1,5 +1,5 @@
 <template>
-    <header class="sticky top-0 bg-white/80 dark:bg-[#161616]/80 backdrop-blur-lg border-b border-white/20 dark:border-[#ffffff10] z-50">
+    <header class="sticky top-0 bg-white/80 dark:bg-[#161616]/80 backdrop-blur-lg border-b border-white/20 dark:border-[#ffffff10] !z-10">
         <Container>
             <div class="h-20 p-6 md:p-0 flex justify-between items-center">
                 <!-- Logo Section -->

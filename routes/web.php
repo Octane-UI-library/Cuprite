@@ -79,7 +79,7 @@ Route::middleware([AdminMiddleware::class])
         Route::resource('examples', AdminExampleController::class)
             ->except(['show']);
         // URL: /admin/logout | Имя маршрута: admin.logout
-        Route::post('/admin/logout', [LoginController::class, 'destroy'])
+        Route::post('/logout', [LoginController::class, 'destroy'])
             ->name('logout');
     });
 

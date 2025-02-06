@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 
-@section('title')
-    @yield('title', 'Cuprite Admin Panel')
+@section('app_main_layout_title')
+    @yield('admin_title', 'Cuprite Admin Panel')
 @endsection
 
-@section('content')
-    @yield('content')
+@section('app_main_layout_content')
+    @yield('admin_content')
 @endsection

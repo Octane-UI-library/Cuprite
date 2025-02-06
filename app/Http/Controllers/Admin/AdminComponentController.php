@@ -2,13 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Component\ComponentCreateAction;
+use App\Actions\Component\ComponentUpdateAction;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Http\Requests\Components\ComponentRequest;
 use App\Models\Component;
-use Illuminate\Http\Request;
+use App\Services\CategoryService;
+use App\Services\ComponentService;
+use Exception;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class AdminComponentController extends Controller
 {
+    private ComponentService $componentService;
+
+    private CategoryService $categoryService;
+
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function __construct()
+    {
+        $this->componentService = app()->get('componentService');
+        $this->categoryService = app()->get('categoryService');
+    }
+
     public function index()
     {
         $components = Component::with('category')->get();
@@ -20,29 +40,28 @@ class AdminComponentController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = $this->categoryService->getAllCategories();
 
         return view('admin.elements.component.create', [
             'categories' => $categories,
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ComponentRequest $request, ComponentCreateAction $action)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'code_html' => 'nullable|string',
-            'code_vue' => 'nullable|string',
-            'code_react' => 'nullable|string',
-            'category_id' => 'required|exists:categories,id',
-        ]);
+        $request->validated();
 
-        Component::query()->create($request->only([
-            'name', 'description', 'code_html', 'code_vue', 'code_react', 'category_id',
-        ]));
+        try {
+            $action->handle($request);
 
-        return redirect()->route('admin.components.index');
+            return redirect()->route('admin.components.index');
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                throw new Exception($e->getMessage(), $e->getCode());
+            } else {
+                abort(500, 'Something went wrong');
+            }
+        }
     }
 
     public function show(int $id)
@@ -56,8 +75,8 @@ class AdminComponentController extends Controller
 
     public function edit(int $id)
     {
-        $component = Component::query()->findOrFail($id);
-        $categories = Category::all();
+        $component = $this->componentService->getComponent($id);
+        $categories = $this->categoryService->getAllCategories();
 
         return view('admin.elements.component.edit', [
             'component' => $component,
@@ -65,24 +84,27 @@ class AdminComponentController extends Controller
         ]);
     }
 
-    public function update(Request $request, int $id)
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function update(ComponentRequest $request, int $id, ComponentUpdateAction $action)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'code_html' => 'nullable|string',
-            'code_vue' => 'nullable|string',
-            'code_react' => 'nullable|string',
-            'category_id' => 'required|exists:categories,id',
-        ]);
+        $request->validated();
 
-        $component = Component::query()->findOrFail($id);
+        try {
 
-        $component->update($request->only([
-            'name', 'description', 'code_html', 'code_vue', 'code_react', 'category_id',
-        ]));
+            $action->handle($request, $id);
 
-        return redirect()->route('admin.components.index');
+            return redirect()->route('admin.components.index');
+
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                throw new Exception($e->getMessage(), $e->getCode());
+            } else {
+                abort(500, 'Something went wrong');
+            }
+        }
     }
 
     public function destroy(int $id)
