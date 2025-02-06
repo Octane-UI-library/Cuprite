@@ -26,7 +26,7 @@
                             <i class="ri-github-fill mr-2"></i>
                             GitHub Stars
                             <span class="ml-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 px-3 py-1 rounded-full">
-                                2.4K
+                                {{ stars }}
                             </span>
                         </a>
                     </div>
@@ -113,7 +113,12 @@
 </template>
 
 <script setup>
+import { defineProps } from 'vue'
 import { Link } from '@inertiajs/vue3'
+
+const props = defineProps({
+    stars: Number,
+})
 
 const features = [
     {

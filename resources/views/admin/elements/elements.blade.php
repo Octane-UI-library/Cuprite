@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('admin.layouts.admin')
 
 @section('title_admin')
     @yield('element_title')
@@ -7,7 +7,7 @@
 @section('content_admin')
 
     <header class="bg-white/80 mb-4 dark:bg-[#212124]/80 backdrop-blur-sm border-b border-white/20 dark:border-[#ffffff10] shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="mx-auto px-6 py-4">
             <div class="flex items-center justify-between gap-4">
                 <!-- Заголовок с иконкой -->
                 <div class="flex items-center space-x-3">

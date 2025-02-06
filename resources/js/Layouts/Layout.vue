@@ -1,7 +1,7 @@
 <template>
     <div v-auto-animate class="min-h-screen">
         <!-- Header -->
-        <header class="fixed z-50 shadow-lg w-full h-20">
+        <header class="fixed !z-10 shadow-lg w-full h-20">
             <Header />
         </header>
 

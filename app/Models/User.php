@@ -8,15 +8,18 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+
     protected $fillable = [
         'name',
         'role',
         'email',
         'password',
     ];
+
     protected $hidden = [
         'password',
     ];
+
     protected function casts(): array
     {
         return [
