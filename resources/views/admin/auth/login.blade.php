@@ -1,8 +1,8 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Admin Login')
+@section('admin_title', 'Admin Login')
 
-@section('content')
+@section('admin_content')
     <div class="min-h-screen bg-gradient-to-br from-red-50 to-rose-100 dark:from-[#0a0a0a] dark:to-[#1a1a1a]">
         <div class="flex items-center justify-center min-h-screen">
             <div

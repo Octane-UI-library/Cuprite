@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('admin.layouts.admin')
 
 @section('title_admin', 'Dashboard')
 
@@ -21,7 +21,7 @@
             <!-- Карточки статистики -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div
-                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                        class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400 mb-2">
@@ -32,7 +32,7 @@
                             </p>
                         </div>
                         <div
-                            class="w-12 h-12 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
+                                class="w-12 h-12 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
                             <i class="ri-puzzle-2-line text-2xl text-red-600 dark:text-red-400"></i>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div
-                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                        class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400 mb-2">
@@ -56,7 +56,7 @@
                             </p>
                         </div>
                         <div
-                            class="w-12 h-12 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
+                                class="w-12 h-12 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
                             <i class="ri-folders-line text-2xl text-red-600 dark:text-red-400"></i>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                 </div>
 
                 <div
-                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                        class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400 mb-2">
@@ -80,7 +80,7 @@
                             </p>
                         </div>
                         <div
-                            class="w-12 h-12 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
+                                class="w-12 h-12 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
                             <i class="ri-user-3-line text-2xl text-red-600 dark:text-red-400"></i>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                 </div>
 
                 <div
-                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                        class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400 mb-2">
@@ -104,7 +104,7 @@
                             </p>
                         </div>
                         <div
-                            class="w-12 h-12 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
+                                class="w-12 h-12 bg-red-100/50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
                             <i class="ri-star-smile-line text-2xl text-red-600 dark:text-red-400"></i>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- График активности -->
                 <div
-                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                        class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                     <h3 class="text-xl font-semibold mb-4 dark:text-white flex items-center">
                         <i class="ri-line-chart-line mr-2 text-red-500"></i>
                         User Activity
@@ -134,7 +134,7 @@
 
                 <!-- Распределение по категориям -->
                 <div
-                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                        class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                     <h3 class="text-xl font-semibold mb-4 dark:text-white flex items-center">
                         <i class="ri-pie-chart-2-line mr-2 text-red-500"></i>
                         Category Distribution
@@ -147,7 +147,7 @@
 
             <!-- Последние компоненты -->
             <div
-                class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                 <h3 class="text-xl font-semibold mb-4 dark:text-white flex items-center">
                     <i class="ri-history-line mr-2 text-red-500"></i>
                     Recently Added Components
@@ -168,7 +168,7 @@
                                 <td class="py-3 dark:text-white">Component {{ $i+1 }}</td>
                                 <td class="py-3">
                                 <span
-                                    class="px-2 py-1 bg-red-100/50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full text-sm">
+                                        class="px-2 py-1 bg-red-100/50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full text-sm">
                                     Category {{ $i+1 }}
                                 </span>
                                 </td>
@@ -192,7 +192,7 @@
             <!-- Популярные категории -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div
-                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                        class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                     <h3 class="text-xl font-semibold mb-4 dark:text-white flex items-center">
                         <i class="ri-fire-line mr-2 text-red-500"></i>
                         Trending Categories
@@ -200,7 +200,7 @@
                     <div class="space-y-4">
                         @foreach([1,2,3,4,5] as $item)
                             <div
-                                class="flex items-center justify-between p-3 bg-gray-50/30 dark:bg-[#19191a] rounded-lg">
+                                    class="flex items-center justify-between p-3 bg-gray-50/30 dark:bg-[#19191a] rounded-lg">
                                 <div class="flex items-center space-x-3">
                                     <i class="ri-folder-2-line text-red-500"></i>
                                     <span class="dark:text-white">Category {{ $item }}</span>
@@ -219,7 +219,7 @@
 
                 <!-- Системная статистика -->
                 <div
-                    class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
+                        class="p-6 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
                     <h3 class="text-xl font-semibold mb-4 dark:text-white flex items-center">
                         <i class="ri-server-line mr-2 text-red-500"></i>
                         System Health
@@ -251,7 +251,7 @@
         </div>
     </div>
 
-    @push('scripts')
+    @push('admin_layout_stack_scripts')
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script type="module">

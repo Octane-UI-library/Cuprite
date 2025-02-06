@@ -1,11 +1,11 @@
 @extends('admin.elements.elements')
 
 @section('element_title')
-    <span class="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">Icons Management</span>
+    Icons
 @endsection
 
 @section('element_txt')
-    Icons
+    <span class="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">Icons Management</span>
 @endsection
 
 @section('element_create_link')
@@ -17,7 +17,7 @@
 @endsection
 
 @section('element_content')
-<div class="bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10] overflow-hidden">
+<div class="bg-white/80 dark:bg-[#212124]/80 h-[89.5%] shadow-xl border border-white/20 dark:border-[#ffffff10] overflow-hidden">
     <div class="px-6 py-4 border-b border-gray-200/50 dark:border-[#ffffff10] bg-gray-50/30 dark:bg-[#19191a]">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
@@ -32,7 +32,7 @@
             <thead class="bg-gray-50/30 dark:bg-[#19191a]">
                 <tr>
                     <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        <i class="ri-tag-line mr-2 text-red-500"></i>
+                        <i class="ri-file-text-line mr-2 text-red-500"></i>
                         Name
                     </th>
                     <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">

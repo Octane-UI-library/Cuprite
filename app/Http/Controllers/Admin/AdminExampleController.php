@@ -76,19 +76,19 @@ class AdminExampleController extends Controller
         return redirect()->back();
     }
 
-//    /**
-//     * Publish the specified resource.
-//     */
-//    public function publish(string $id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Archive the specified resource.
-//     */
-//    public function archive(string $id)
-//    {
-//        //
-//    }
+    //    /**
+    //     * Publish the specified resource.
+    //     */
+    //    public function publish(string $id)
+    //    {
+    //        //
+    //    }
+    //
+    //    /**
+    //     * Archive the specified resource.
+    //     */
+    //    public function archive(string $id)
+    //    {
+    //        //
+    //    }
 }

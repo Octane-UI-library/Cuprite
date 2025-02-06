@@ -1,10 +1,14 @@
-@extends('layouts.layout')
+@extends('admin.layouts.main')
 
-@section('title')
+@section('admin_title')
     @yield('title_admin', 'Cuprite Admin Panel')
 @endsection
 
-@section('content')
+@push('app_main_layout_stack_head')
+    @stack('admin_layout_stack_head')
+@endpush
+
+@section('admin_content')
     <div class="flex min-h-screen">
         <aside class="sm:w-72">
             @component('admin.components.nav') @endcomponent
@@ -15,7 +19,7 @@
         </main>
     </div>
 
-    @push('scripts')
-        @stack('scripts')
+    @push('app_main_layout_scripts')
+        @stack('admin_layout_stack_scripts')
     @endpush
 @endsection

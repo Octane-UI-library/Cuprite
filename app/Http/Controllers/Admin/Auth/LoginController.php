@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -19,7 +18,7 @@ class LoginController extends Controller
 
         $request->validated();
 
-        if (!auth()->attempt($request->only('email', 'password'))) {
+        if (! auth()->attempt($request->only('email', 'password'))) {
             return back()->with('error', 'Invalid login details');
         }
 
@@ -39,15 +38,17 @@ class LoginController extends Controller
 
     public function createTestAdmin()
     {
-        if (User::where('email', 'admin@admin.com')->first()) {
+        if (User::query()->where('email', 'admin@admin.com')->first()) {
             return redirect()->route('admin.login');
         }
 
-        User::create([
+        User::query()->create([
             'name' => 'AdminTest',
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
-            'role' => 'admin'
+            'role' => 'admin',
         ]);
+
+        return response('Test admin created', 201);
     }
 }
