@@ -6,7 +6,7 @@
 
 @section('content_admin')
 
-    <header class="bg-white/80 mb-4 dark:bg-[#212124]/80 backdrop-blur-sm border-b border-white/20 dark:border-[#ffffff10] shadow-sm">
+    <header class="bg-white/80 dark:bg-[#212124]/80 backdrop-blur-sm border-b border-white/20 dark:border-[#ffffff10] shadow-sm">
         <div class="mx-auto px-6 py-4">
             <div class="flex items-center justify-between gap-4">
                 <!-- Заголовок с иконкой -->
