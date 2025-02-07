@@ -13,3 +13,20 @@ body{
 .active{
     @apply text-rose-500 bg-rose-50;
 }
+.CodeMirror {
+    @apply min-h-80;
+}
+.CodeMirror-gutters{
+    width: 30px;
+    left: 0 !important;
+}
+.CodeMirror-gutter-elt{
+    margin-left: 0;
+    left: 0 !important;
+}
+.CodeMirror-line{
+    margin-left: 0!important;
+}
+.CodeMirror-cursors{
+    margin-left: 0;
+}
