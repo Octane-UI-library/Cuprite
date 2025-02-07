@@ -1,7 +1,7 @@
 @extends('admin.elements.elements')
 
 @section('element_title')
-    <span class="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">Create New Icon</span>
+    Create New Icon
 @endsection
 
 @section('element_txt')
@@ -17,99 +17,75 @@
 @endsection
 
 @section('element_content')
-<div class="max-w-3xl mx-auto p-8 bg-white/80 dark:bg-[#212124]/80 rounded-2xl shadow-xl border border-white/20 dark:border-[#ffffff10]">
-    <form action="{{ route('admin.icons.store') }}" method="POST" class="space-y-8">
-        @csrf
 
-        <!-- Name Field -->
-        <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Icon Name
-                <span class="text-red-500">*</span>
-            </label>
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-red-500">
-                    <i class="ri-tag-line"></i>
-                </div>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    class="w-full pl-10 pr-4 py-3 outline-none bg-white/50 dark:bg-[#2d2d30]/50 rounded-lg border border-gray-300/50 dark:border-[#ffffff15] focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-400 dark:placeholder-gray-600 transition-all"
-                    placeholder="Example: Home Icon"
+    <x-admin.components.container>
+        <form action="{{ route('admin.icons.store') }}" method="POST" class="space-y-8">
+            @csrf
+
+            <!-- Name Field -->
+            <x-admin.components.input
+                label-text="Name"
+                input-icon-class="ri-home-line"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Example: Home Icon"
+                required
+            />
+            <!-- Class Field -->
+            <x-admin.components.input
+                label-text="Icon Class"
+                input-icon-class="ri-code-line"
+                type="text"
+                name="class"
+                id="class"
+                placeholder="Example: ri-home-line"
+                required
+                oninput="updateIconPreview()"
+            />
+
+            <!-- Icon Preview -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Icon Preview
+                </label>
+                <div
+                    id="icon-preview"
+                    class="p-8 bg-gray-50/30 dark:bg-[#19191a] rounded-lg border border-gray-200/30 dark:border-[#ffffff10] flex items-center justify-center h-32 transition-all"
                 >
-            </div>
-        </div>
-
-        <!-- Class Field -->
-        <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Icon Class
-                <span class="text-red-500">*</span>
-            </label>
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-red-500">
-                    <i class="ri-code-line"></i>
+                    <i class="ri-question-line text-6xl text-red-500 dark:text-red-400 opacity-50"></i>
                 </div>
-                <input
-                    type="text"
-                    name="class"
-                    id="class"
-                    required
-                    class="w-full pl-10 pr-4 py-3 outline-none bg-white/50 dark:bg-[#2d2d30]/50 rounded-lg border border-gray-300/50 dark:border-[#ffffff15] focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-400 dark:placeholder-gray-600 transition-all"
-                    placeholder="Example: ri-home-line"
-                    oninput="updateIconPreview()"
-                >
             </div>
-        </div>
 
-        <!-- Icon Preview -->
-        <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Icon Preview
-            </label>
-            <div
-                id="icon-preview"
-                class="p-8 bg-gray-50/30 dark:bg-[#19191a] rounded-lg border border-gray-200/30 dark:border-[#ffffff10] flex items-center justify-center h-32 transition-all"
-            >
-                <i class="ri-question-line text-6xl text-red-500 dark:text-red-400 opacity-50"></i>
-            </div>
-        </div>
+            <!-- Submit Button -->
+            <x-admin.components.submit-btn>
+                Create Icon
+            </x-admin.components.submit-btn>
+        </form>
+    </x-admin.components.container>
 
-        <!-- Submit Button -->
-        <div class="pt-6 border-t border-gray-200/50 dark:border-[#ffffff10]">
-            <button
-                type="submit"
-                class="w-full bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-700 hover:to-rose-600 text-white font-semibold py-3.5 px-6 rounded-lg transition-all transform hover:scale-[1.02] flex items-center justify-center space-x-2"
-            >
-                <i class="ri-add-circle-line"></i>
-                <span>Create Icon</span>
-            </button>
-        </div>
-    </form>
-</div>
+@push('admin_layout_stack_scripts')
+    <script>
+        function updateIconPreview() {
+            const iconClass = document.getElementById('class').value.trim();
+            const iconPreview = document.getElementById('icon-preview');
 
-<script>
-    function updateIconPreview() {
-        const iconClass = document.getElementById('class').value.trim();
-        const iconPreview = document.getElementById('icon-preview');
+            iconPreview.innerHTML = '';
+            if(iconClass) {
+                try {
+                    const icon = document.createElement('i');
+                    icon.className = `${iconClass} text-6xl text-red-500 dark:text-red-400 transition-all`;
+                    iconPreview.appendChild(icon);
 
-        iconPreview.innerHTML = '';
-        if(iconClass) {
-            try {
-                const icon = document.createElement('i');
-                icon.className = `${iconClass} text-6xl text-red-500 dark:text-red-400 transition-all`;
-                iconPreview.appendChild(icon);
-
-                iconPreview.classList.add('animate-pulse');
-                setTimeout(() => iconPreview.classList.remove('animate-pulse'), 200);
-            } catch(e) {
-                iconPreview.innerHTML = '<i class="ri-error-warning-line text-red-500 text-4xl"></i>';
+                    iconPreview.classList.add('animate-pulse');
+                    setTimeout(() => iconPreview.classList.remove('animate-pulse'), 200);
+                } catch(e) {
+                    iconPreview.innerHTML = '<i class="ri-error-warning-line text-red-500 text-4xl"></i>';
+                }
+            } else {
+                iconPreview.innerHTML = '<i class="ri-question-line text-6xl text-red-500 opacity-50"></i>';
             }
-        } else {
-            iconPreview.innerHTML = '<i class="ri-question-line text-6xl text-red-500 opacity-50"></i>';
         }
-    }
-</script>
+    </script>
+@endpush
 @endsection
